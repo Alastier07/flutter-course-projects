@@ -1,0 +1,23 @@
+Import
+
+Variables
+	- var
+	- String //Must be string
+	- int //Must be int
+	- double //Must be double
+	- bool //Must be true/false
+	- dynamic //Anything format
+	- final //Constant
+
+	int.parse(stringVariable) //Convert string to int.
+	intVaribale.toString() //Convert int to string.
+	double.parse() //Convert to double.
+	
+
+String 
+	" "
+	""" """ //Multi line
+
+Create Darou (Daily Routine) app
+
+
