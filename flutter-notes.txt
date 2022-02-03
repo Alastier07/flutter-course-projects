@@ -1,23 +1,21 @@
-Import
+-- Create project --
+	1. Go to your folder path you want to create your project.
+		- cd "folder path"
+			ex. cd C:\Users\admin\Desktop\development\projects
+	2. Create flutter by this command;
+		- flutter create "name of folder project"
+			ex. flutter create myfirst_project
+	3. And now you can open your project folder in VSCode
+		- notes: Install dart & flutter extension in VSCode.
 
-Variables
-	- var
-	- String //Must be string
-	- int //Must be int
-	- double //Must be double
-	- bool //Must be true/false
-	- dynamic //Anything format
-	- final //Constant
+-- Run flutter project --
+	1. Go to vscode terminal and run this command (note: make sure you are in project path location).
+		- flutter run
+	2. Press r to hot reload and shift + r (R) to hot restart.
+	3. Press q to exit running app.
 
-	int.parse(stringVariable) //Convert string to int.
-	intVaribale.toString() //Convert int to string.
-	double.parse() //Convert to double.
-	
+-- Run flutter packages get --
+	1. To ensure the flutter to fix up the yaml file. Go to terminal and run this command;
+		flutter packages get
 
-String 
-	" "
-	""" """ //Multi line
-
-Create Darou (Daily Routine) app
-
-
+-- 
