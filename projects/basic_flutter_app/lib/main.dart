@@ -6,13 +6,30 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp()); // => make function in one expression
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return MyAppState();
+  }
+}
+
+class MyAppState extends State<MyApp> {
+  var questionIndex = 0;
+
   void answerButton() {
+    setState(() {
+      questionIndex += 1;
+    });
     print('Answer Chosen!');
   }
 
   @override
   Widget build(BuildContext context) {
+    var questions = [
+      'What is your favorite color?',
+      'What is your favorite animal?',
+    ];
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -20,7 +37,7 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Text('The questions'),
+            Text(questions[questionIndex]), //or questions.elementAt(0)
             RaisedButton(
               child: Text('Answer 1'),
               onPressed: answerButton, //call the name function not the result
