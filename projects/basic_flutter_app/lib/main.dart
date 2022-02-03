@@ -1,7 +1,8 @@
 //packages
 import 'package:flutter/material.dart';
 //files
-import '/questions.dart';
+import './questions.dart';
+import './answer.dart';
 //void main() {
 //  runApp(MyApp());
 //}
@@ -42,21 +43,9 @@ class _MyAppState extends State<MyApp> {
             Question(
               questions[_questionIndex],
             ), //or questions.elementAt(0)
-            RaisedButton(
-              child: Text('Answer 1'),
-              onPressed: _answerButton, //call the name function not the result
-            ),
-            RaisedButton(
-              child: Text('Answer 2'),
-              onPressed: () => print("Answer 2"), //anonymous function
-            ),
-            RaisedButton(
-                child: Text('Answer 3'),
-                onPressed: () {
-                  // ...
-                  print('Answer 3');
-                } //anonymous function
-                ),
+            Answer(_answerButton),
+            Answer(_answerButton),
+            Answer(_answerButton),
           ],
         ),
       ), // Create basic design to app
