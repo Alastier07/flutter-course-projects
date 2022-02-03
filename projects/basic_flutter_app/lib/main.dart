@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 //  runApp(MyApp());
 //}
 
-void answerButton() {
-  print('Answer Chosen!');
-}
-
 void main() => runApp(MyApp()); // => make function in one expression
 
 class MyApp extends StatelessWidget {
+  void answerButton() {
+    print('Answer Chosen!');
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,12 +27,15 @@ class MyApp extends StatelessWidget {
             ),
             RaisedButton(
               child: Text('Answer 2'),
-              onPressed: answerButton,
+              onPressed: () => print("Answer 2"), //anonymous function
             ),
             RaisedButton(
-              child: Text('Answer 3'),
-              onPressed: answerButton,
-            ),
+                child: Text('Answer 3'),
+                onPressed: () {
+                  // ...
+                  print('Answer 3');
+                } //anonymous function
+                ),
           ],
         ),
       ), // Create basic design to app
