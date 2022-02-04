@@ -19,7 +19,12 @@ class _MyAppState extends State<MyApp> {
 
   void _nextMessages() {
     setState(() {
-      _messageIndex += 1;
+      if (_messageIndex < _message.length) {
+        _messageIndex += 1;
+        if (_messageIndex == _message.length) {
+          _messageIndex = 0;
+        }
+      }
     });
   }
 
