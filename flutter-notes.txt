@@ -43,3 +43,11 @@
 	1. The core difference between StatelessWidget and StatefulWidget is whilst you can add (and also change) properties in a StatelessWidget, there's no way of telling Flutter that it should re-run build() upon such changes.
 	2. All widgets (i.e. both Stateless and Stateful) can receive data via their constructors. But only StatefulWidgets can have class properties where they can update values + re-run build().
 	3. setState() is a "trigger" that informs Flutter that it needs to re-run build() of the Widget.
+
+-- Advance Flutter & Dart Basics --
+	1. The leading "_" marks a class, property or method as private, which means that you can only use it in the same library. Typically, a file is treated as a separate library.
+	2. enum -> is a value where you can choose from multiple possible choices. You choose by selecting a huma-readable label, behind the scenes, the label are mapped to integers (0, 1, ...)
+	3. You can have more than one constructor in your Dart classes. Extra constructors typically yield you differently configured objects of the same type.
+	4. Maps are basically like Lists without number indexes but custom indexes (keys).
+	5. map() returns a new iterable (which is transformed to a list via toList()) where each value of the original list (names) is transformed as "described" by the function you pass to map. In this case, each name is wrapped into a Text() widget and then added to the new list which is stored in result.
+	6. final -> At runtime, an initial, dynamic value can be assigned, thereafter, the property / variable can't be changed again.
