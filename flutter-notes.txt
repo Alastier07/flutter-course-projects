@@ -54,3 +54,9 @@
 
 -- Null Safety --
 	1. inputing ? to type variable like this "String? username;" is to tell that username can be null value.
+
+-- Old button to new button --
+	RaisedButton => ElevatedButton
+	FlatButton => TextButton
+	OutlineButton => OutlinedButton
+	
