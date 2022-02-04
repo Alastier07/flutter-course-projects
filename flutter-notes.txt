@@ -51,3 +51,6 @@
 	4. Maps are basically like Lists without number indexes but custom indexes (keys).
 	5. map() returns a new iterable (which is transformed to a list via toList()) where each value of the original list (names) is transformed as "described" by the function you pass to map. In this case, each name is wrapped into a Text() widget and then added to the new list which is stored in result.
 	6. final -> At runtime, an initial, dynamic value can be assigned, thereafter, the property / variable can't be changed again.
+
+-- Null Safety --
+	1. inputing ? to type variable like this "String? username;" is to tell that username can be null value.
