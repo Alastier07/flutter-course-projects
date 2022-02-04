@@ -18,4 +18,28 @@
 	1. To ensure the flutter to fix up the yaml file. Go to terminal and run this command;
 		flutter packages get
 
--- 
+-- Dart Fundamentals --
+	1. Types describe which type of data you're using in a variable, function etc.
+	2. Variables are basically data containers.
+	3. Functions are basically "code snippets" which you write once to then use them as often and whenever you want.
+	4. Classes act as blueprints that describe how an object should look like. You create ("instantiate") a class by executing it like a function.
+	5. You can have class-level variables (which you then can access from anywhere inside the class) - such variables are then called properties. Side note: Functions inside of a class are called "methods".
+	6. String = It's a "string of characters", hence the name.
+
+-- Flutter App Basics --
+	1. runApp() -> This function takes the widget object you pass to it and ensures that the widget tree of that widget gets created.
+	2. build() returns a so-called "widget tree" which tells Flutter what to draw onto the screen.
+	3. Flutter is all about buildings apps and for that, you need user interfaces. You build these user interfaces with Widgets => The core UI building blocks.
+
+-- Widget Basics --
+	1. Widgets are your core UI building block.
+	2. Widgets are just Dart objects. They need to extend StatelessWidget or StatefulWidget though (and implement a build() method).
+	3. Widget Tree -> A typical Flutter app UI consists of multiple layers of Widgets which together form the look you want.
+	4. Widgets are the UI elements you mix together to build a user interface.
+	5. Combine Widgets -> Most Widgets have some (named) arguments that require another Widget - e.g. the "children" argument on the Column() constructor. Or "child" on Container().
+	6. Widgets are normal Dart classes / objects. But they're only usable as Widgets if you extend StatelessWidget or StatefulWidget and add a build() method.
+
+-- Stateful and Stateless Widget --
+	1. The core difference between StatelessWidget and StatefulWidget is whilst you can add (and also change) properties in a StatelessWidget, there's no way of telling Flutter that it should re-run build() upon such changes.
+	2. All widgets (i.e. both Stateless and Stateful) can receive data via their constructors. But only StatefulWidgets can have class properties where they can update values + re-run build().
+	3. setState() is a "trigger" that informs Flutter that it needs to re-run build() of the Widget.
