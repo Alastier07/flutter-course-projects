@@ -68,6 +68,10 @@
 	Repeat Elements: ListView, GridView, ListTile
 	Content Types: Text, Image, Icon
 	User Input: TextField, RaisedButton/FlatButton, GestureDetector, InkWell
-	
+
+-- Row and Column --
+	1. Rows and Columns are used to organize multiple sibling widgets.
+	2. Columns by default span across the entire vertical space they can get.
+	3. You can absolutely have a Row in a Column, a Column in a Row or Rows in Rows / Columns in Columns.
 	
 	
