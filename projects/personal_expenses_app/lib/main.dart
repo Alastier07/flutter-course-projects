@@ -53,9 +53,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 elevation: 5,
               ),
             ),
-            Card(
-              color: Colors.red,
-              child: Text('List of Tx'),
+            Column(
+              children: transactions.map((tx) {
+                return Card(
+                  child: Text(tx.title as String),
+                );
+              }).toList(),
             ),
           ],
         ));
