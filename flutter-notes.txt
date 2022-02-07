@@ -77,6 +77,12 @@
 -- Styling --
 	1. You configure widgets via their constructor arguments - that includes styling config.
 	2. BoxDecoration() creates a decoration object which you can configure in many different ways (e.g. border, radius, color) via its constructor arguments.
-	3. Use the many resources you got for which constructor wants and which kind of value need. IDE support + official docs.
+	3. Use the many resources you got for which constructor wants and which kind of value need. IDE support + official docs.	
+
+-- List, Scrolling & Text Input --
+	1. A Column() would have to be wrapped with a SingleChildScrollView to add scrolling while ListView is scrollable by default.
+	2. TextField() => user input, Text() => output text
+	3. ListView.builder() builds widgets as required (i.e when they can be seen), Its a process that's also called "lazily rendering widgets"
+
 	
 	
