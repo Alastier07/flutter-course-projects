@@ -36,6 +36,9 @@ class _MyHomePageState extends State<MyHomePage> {
     ),
   ];
 
+  String titleInput;
+  String amountInput;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,12 +66,17 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: <Widget>[
                     TextField(
                       decoration: InputDecoration(labelText: 'Title'),
+                      onChanged: (val) => titleInput = val,
                     ),
                     TextField(
                       decoration: InputDecoration(labelText: 'Amount'),
+                      onChanged: (val) => amountInput = val,
                     ),
                     FlatButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        print(titleInput);
+                        print(amountInput);
+                      },
                       child: Text('Add Transaction'),
                       textColor: Colors.purple,
                     )
