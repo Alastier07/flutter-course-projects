@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import './widgets/transaction_list.dart';
+import './widgets/user_transaction.dart';
 
 void main() => runApp(MyApp());
 
@@ -22,8 +21,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   //String titleInput;
   //String amountInput;
-  final titleController = TextEditingController();
-  final amountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -43,36 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 elevation: 5,
               ),
             ),
-            Card(
-              elevation: 5,
-              child: Container(
-                padding: EdgeInsets.all(10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: <Widget>[
-                    TextField(
-                      decoration: InputDecoration(labelText: 'Title'),
-                      //onChanged: (val) => titleInput = val,
-                      controller: titleController,
-                    ),
-                    TextField(
-                      decoration: InputDecoration(labelText: 'Amount'),
-                      //onChanged: (val) => amountInput = val,
-                      controller: amountController,
-                    ),
-                    FlatButton(
-                      onPressed: () {
-                        print(titleController.text);
-                        print(amountController.text);
-                      },
-                      child: Text('Add Transaction'),
-                      textColor: Colors.purple,
-                    )
-                  ],
-                ),
-              ),
-            ),
-            TransactionList()
+            UserTransactions(),
           ],
         ));
   }
