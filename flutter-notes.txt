@@ -84,5 +84,29 @@
 	2. TextField() => user input, Text() => output text
 	3. ListView.builder() builds widgets as required (i.e when they can be seen), Its a process that's also called "lazily rendering widgets"
 
+-- Update Text Theme Properties --
+	display4 => headline1;
+	display3 => headline2;
+	display2 => headline3;
+	display1 => headline4;
+	headline => headline5;
+	title => headline6;
+	subhead => subtitle1;
+	subtitle => subtitle2;
+	body2 => bodyText1;
+	body => bodyText2;
 	
+	appBarTheme: AppBarTheme(
+  		textTheme: ThemeData.light().textTheme.copyWith(...)
+	)
+	
+	to
+
+	appBarTheme: AppBarTheme(
+  		titleTextStyle: TextStyle(
+    			fontFamily: 'OpenSans',
+    			fontSize: 20,
+    			fontWeight: FontWeight.bold
+  		)
+	)
 	
