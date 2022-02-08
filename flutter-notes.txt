@@ -109,4 +109,9 @@
     			fontWeight: FontWeight.bold
   		)
 	)
+
+-- Theming --
+	1. Advantage of theming in Flutter apps; You define a theme globally and can then tap into it from anywhere in your app.
+	2. primarySwatch get different shades which some Flutter widgets automatically use.
+	3. Using text theme on a Text() widget define it globally, use via the style argument.
 	
