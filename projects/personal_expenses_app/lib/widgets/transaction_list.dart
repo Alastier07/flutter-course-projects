@@ -7,7 +7,7 @@ class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
   final Function deleteTx;
 
-  TransactionList(this.transactions, this.deleteTx);
+  TransactionList(this.transactions, this.deleteTx); //Constructor
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +15,7 @@ class TransactionList extends StatelessWidget {
       height: 510,
       child: transactions.isEmpty
           ? Column(
+              // Showing this widget if empty transactions
               children: <Widget>[
                 Text(
                   'No transaction added yet!',
@@ -23,6 +24,7 @@ class TransactionList extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
+                // Image
                 Container(
                     height: 200,
                     child: Image.asset(
@@ -32,6 +34,7 @@ class TransactionList extends StatelessWidget {
               ],
             )
           : ListView.builder(
+              // Show List of Transactions
               itemBuilder: (ctx, index) {
                 return Card(
                   elevation: 5,
@@ -46,17 +49,18 @@ class TransactionList extends StatelessWidget {
                         padding: EdgeInsets.all(6),
                         child: FittedBox(
                           child: Text(
-                            '\$${transactions[index].amount.toStringAsFixed(2)}',
+                            '\$${transactions[index].amount.toStringAsFixed(2)}', // Amount
                           ),
                         ),
                       ),
                     ),
                     title: Text(
-                      transactions[index].title,
+                      transactions[index].title, // Title
                       style: Theme.of(context).textTheme.headline6,
                     ),
                     subtitle: Text(
-                      DateFormat.yMMMd().format(transactions[index].date),
+                      DateFormat.yMMMd()
+                          .format(transactions[index].date), // Date
                     ),
                     trailing: IconButton(
                       icon: Icon(Icons.delete),

@@ -44,8 +44,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  //String titleInput;
-  //String amountInput;
+  /* List Transaction*/
   final List<Transaction> _userTransactions = [
     // Transaction(
     //   id: 't1',
@@ -61,6 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // ),s
   ];
 
+  // List of transaction inside of past 6 days until today
   List<Transaction> get _recentTransactions {
     return _userTransactions.where((tx) {
       return tx.date.isAfter(
@@ -71,6 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
+  // Add new transaction function
   void _addNewTransaction(
     String txTitle,
     double txAmount,
@@ -85,9 +86,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
     setState(() {
       _userTransactions.add(newTx);
-    });
+    }); // setState to rebuild
   }
 
+  // Function for showing modal for adding new transaction
   void _startAddNewTransaction(BuildContext ctx) {
     showModalBottomSheet(
       context: ctx,
@@ -101,6 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  // Delete transaction function
   void _deleteTransaction(String id) {
     setState(() {
       _userTransactions.removeWhere((tx) => tx.id == id);
@@ -113,6 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text('Personal Expenses'),
         actions: <Widget>[
+          // App bar add button for opening of modal for adding new transaction
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () => _startAddNewTransaction(context),
@@ -124,11 +128,14 @@ class _MyHomePageState extends State<MyHomePage> {
           //mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            // Chart Widget
             Chart(_recentTransactions),
+            // Transactions List Widget
             TransactionList(_userTransactions, _deleteTransaction),
           ],
         ),
       ),
+      // Floating button for opening the adding new transaction modal
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),

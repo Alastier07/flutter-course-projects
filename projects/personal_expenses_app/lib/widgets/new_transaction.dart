@@ -15,7 +15,9 @@ class _NewTransactionState extends State<NewTransaction> {
   final _amountController = TextEditingController();
   DateTime _selectedDate;
 
+  // Submit data function
   void _submitData() {
+    // Check if amount is empty
     if (_amountController.text.isEmpty) {
       return;
     }
@@ -23,6 +25,7 @@ class _NewTransactionState extends State<NewTransaction> {
     final enteredTitle = _titleController.text;
     final enteredAmount = double.parse(_amountController.text);
 
+    // Check if data is empty
     if (enteredTitle.isEmpty || enteredAmount <= 0 || _selectedDate == null) {
       return;
     }
@@ -33,9 +36,11 @@ class _NewTransactionState extends State<NewTransaction> {
       _selectedDate,
     );
 
+    // Close modal
     Navigator.of(context).pop();
   }
 
+  // DatePicker function for showing and selecting date
   void _presentDatePicker() {
     showDatePicker(
       context: context,
@@ -61,12 +66,14 @@ class _NewTransactionState extends State<NewTransaction> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
+            // Input for title
             TextField(
               decoration: InputDecoration(labelText: 'Title'),
               //onChanged: (val) => titleInput = val,
               controller: _titleController,
               onSubmitted: (_) => _submitData(),
             ),
+            // Input for amount
             TextField(
               decoration: InputDecoration(labelText: 'Amount'),
               //onChanged: (val) => amountInput = val,
@@ -74,6 +81,7 @@ class _NewTransactionState extends State<NewTransaction> {
               keyboardType: TextInputType.number,
               onSubmitted: (_) => _submitData(),
             ),
+            // DatePicker Text & Button
             Container(
               height: 70,
               child: Row(children: <Widget>[
@@ -96,6 +104,7 @@ class _NewTransactionState extends State<NewTransaction> {
                 ),
               ]),
             ),
+            // Submit Button for adding transaction
             RaisedButton(
               onPressed: _submitData,
               child: Text('Add Transaction'),

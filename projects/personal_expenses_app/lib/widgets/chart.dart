@@ -6,15 +6,16 @@ import '../models/transaction.dart';
 class Chart extends StatelessWidget {
   final List<Transaction> recentTransactions;
 
-  Chart(this.recentTransactions);
+  Chart(this.recentTransactions); //Constructor
 
+  // List of transaction in before 6 days until now
   List<Map<String, Object>> get groupedTransactionValues {
     return List.generate(7, (index) {
       final weekDay = DateTime.now().subtract(
         Duration(days: index),
       );
       var totalSum = 0.0;
-
+      // Compute total sum in particular day
       for (var i = 0; i < recentTransactions.length; i++) {
         if (recentTransactions[i].date.day == weekDay.day &&
             recentTransactions[i].date.month == weekDay.month &&
@@ -30,6 +31,7 @@ class Chart extends StatelessWidget {
     }).reversed.toList();
   }
 
+  // Total Spending of 7 days transactions
   double get totalSpending {
     return groupedTransactionValues.fold(0.0, (sum, item) {
       return sum + item['amount'];
@@ -49,11 +51,12 @@ class Chart extends StatelessWidget {
             return Flexible(
               fit: FlexFit.tight,
               child: ChartBar(
-                data['day'],
-                data['amount'],
+                data['day'], // Day
+                data['amount'], // Total amount
                 totalSpending == 0.0
                     ? 0.0
-                    : (data['amount'] as double) / totalSpending,
+                    : (data['amount'] as double) /
+                        totalSpending, // Spending Percentage
               ),
             );
           }).toList(),

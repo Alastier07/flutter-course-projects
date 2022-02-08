@@ -14,7 +14,8 @@ class ChartBar extends StatelessWidget {
         Container(
           height: 20,
           child: FittedBox(
-            child: Text('\$${spendingAmount.toStringAsFixed(0)}'),
+            child:
+                Text('\$${spendingAmount.toStringAsFixed(0)}'), // Total Amount
           ),
         ),
         SizedBox(
@@ -33,7 +34,8 @@ class ChartBar extends StatelessWidget {
                 ),
               ),
               FractionallySizedBox(
-                heightFactor: spendingPctofTotal,
+                heightFactor:
+                    spendingPctofTotal, // Height of spending percentage
                 child: Container(
                   decoration: BoxDecoration(
                     color: Theme.of(context).primaryColor,
@@ -47,7 +49,7 @@ class ChartBar extends StatelessWidget {
         SizedBox(
           height: 4,
         ),
-        Text(label),
+        Text(label), // Label Day
       ],
     );
   }
