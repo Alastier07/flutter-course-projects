@@ -14,7 +14,7 @@ class _NewTransactionState extends State<NewTransaction> {
 
   final amountController = TextEditingController();
 
-  void submitData() {
+  void _submitData() {
     final enteredTitle = titleController.text;
     final enteredAmount = double.parse(amountController.text);
 
@@ -30,6 +30,15 @@ class _NewTransactionState extends State<NewTransaction> {
     Navigator.of(context).pop();
   }
 
+  void _presentDatePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2022),
+      lastDate: DateTime.now(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -43,14 +52,14 @@ class _NewTransactionState extends State<NewTransaction> {
               decoration: InputDecoration(labelText: 'Title'),
               //onChanged: (val) => titleInput = val,
               controller: titleController,
-              onSubmitted: (_) => submitData(),
+              onSubmitted: (_) => _submitData(),
             ),
             TextField(
               decoration: InputDecoration(labelText: 'Amount'),
               //onChanged: (val) => amountInput = val,
               controller: amountController,
               keyboardType: TextInputType.number,
-              onSubmitted: (_) => submitData(),
+              onSubmitted: (_) => _submitData(),
             ),
             Container(
               height: 70,
@@ -64,12 +73,12 @@ class _NewTransactionState extends State<NewTransaction> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: _presentDatePicker,
                 ),
               ]),
             ),
             RaisedButton(
-              onPressed: submitData,
+              onPressed: _submitData,
               child: Text('Add Transaction'),
               textColor: Theme.of(context).textTheme.button.color,
               color: Theme.of(context).primaryColor,
