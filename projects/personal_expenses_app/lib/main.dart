@@ -123,9 +123,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    // Store media query object in varible
+    final mediaQuery = MediaQuery.of(context);
+
     // Check if orientation is landscape
-    final isLandscape =
-        MediaQuery.of(context).orientation == Orientation.landscape;
+    final isLandscape = mediaQuery.orientation == Orientation.landscape;
 
     // AppBar
     final appBar = AppBar(
@@ -141,9 +143,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
     // Transaction List Widget
     final transactListWidget = Container(
-      height: (MediaQuery.of(context).size.height -
+      height: (mediaQuery.size.height -
               appBar.preferredSize.height -
-              MediaQuery.of(context).padding.top) *
+              mediaQuery.padding.top) *
           0.7,
       child: TransactionList(_userTransactions, _deleteTransaction),
     );
@@ -172,9 +174,9 @@ class _MyHomePageState extends State<MyHomePage> {
             // Chart Widget
             if (!isLandscape) // Show if orientation is portrait mode
               Container(
-                height: (MediaQuery.of(context).size.height -
+                height: (mediaQuery.size.height -
                         appBar.preferredSize.height -
-                        MediaQuery.of(context).padding.top) *
+                        mediaQuery.padding.top) *
                     0.25, // 0 = 0% and 1 = 100% of screen
                 child: Chart(_recentTransactions),
               ),
@@ -183,7 +185,7 @@ class _MyHomePageState extends State<MyHomePage> {
             if (isLandscape) // Show if orientation is landscape mode
               _showChart
                   ? Container(
-                      height: (MediaQuery.of(context).size.height -
+                      height: (mediaQuery.size.height -
                               appBar.preferredSize.height -
                               MediaQuery.of(context).padding.top) *
                           0.67, // 0 = 0% and 1 = 100% of screen
