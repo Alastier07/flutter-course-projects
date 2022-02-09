@@ -123,6 +123,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    // Check if orientation is landscape
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
+
+    // AppBar
     final appBar = AppBar(
       title: Text('Personal Expenses'),
       actions: <Widget>[
@@ -133,6 +138,15 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ],
     );
+
+    // Transaction List Widget
+    final transactListWidget = Container(
+      height: (MediaQuery.of(context).size.height -
+              appBar.preferredSize.height -
+              MediaQuery.of(context).padding.top) *
+          0.7,
+      child: TransactionList(_userTransactions, _deleteTransaction),
+    );
     return Scaffold(
       appBar: appBar,
       body: SingleChildScrollView(
@@ -140,38 +154,42 @@ class _MyHomePageState extends State<MyHomePage> {
           //mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text('Show Chart'),
-                Switch(
-                  value: _showChart,
-                  onChanged: (val) {
-                    setState(() {
-                      _showChart = val;
-                    });
-                  },
-                ),
-              ],
-            ),
+            if (isLandscape)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text('Show Chart'),
+                  Switch(
+                    value: _showChart,
+                    onChanged: (val) {
+                      setState(() {
+                        _showChart = val;
+                      });
+                    },
+                  ),
+                ],
+              ),
             // Chart Widget
-            _showChart
-                ? Container(
-                    height: (MediaQuery.of(context).size.height -
-                            appBar.preferredSize.height -
-                            MediaQuery.of(context).padding.top) *
-                        0.67, // 0 = 0% and 1 = 100% of screen
-                    child: Chart(_recentTransactions),
-                  )
-                :
-                // Transactions List Widget
-                Container(
-                    height: (MediaQuery.of(context).size.height -
-                            appBar.preferredSize.height -
-                            MediaQuery.of(context).padding.top) *
-                        0.7,
-                    child:
-                        TransactionList(_userTransactions, _deleteTransaction)),
+            if (!isLandscape) // Show if orientation is portrait mode
+              Container(
+                height: (MediaQuery.of(context).size.height -
+                        appBar.preferredSize.height -
+                        MediaQuery.of(context).padding.top) *
+                    0.25, // 0 = 0% and 1 = 100% of screen
+                child: Chart(_recentTransactions),
+              ),
+            if (!isLandscape) transactListWidget,
+
+            if (isLandscape) // Show if orientation is landscape mode
+              _showChart
+                  ? Container(
+                      height: (MediaQuery.of(context).size.height -
+                              appBar.preferredSize.height -
+                              MediaQuery.of(context).padding.top) *
+                          0.67, // 0 = 0% and 1 = 100% of screen
+                      child: Chart(_recentTransactions),
+                    )
+                  : transactListWidget // Transactions List Widget
           ],
         ),
       ),
