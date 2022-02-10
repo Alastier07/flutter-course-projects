@@ -121,6 +121,57 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  // Landscape Content
+  List<Widget> _buildLandscapeContent(
+    MediaQueryData mediaQuery,
+    AppBar appBar,
+    Widget transactListWidget,
+  ) {
+    return [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text('Show Chart'),
+          Switch(
+            value: _showChart,
+            onChanged: (val) {
+              setState(() {
+                _showChart = val;
+              });
+            },
+          ),
+        ],
+      ),
+      _showChart
+          ? Container(
+              height: (mediaQuery.size.height -
+                      appBar.preferredSize.height -
+                      MediaQuery.of(context).padding.top) *
+                  0.67, // 0 = 0% and 1 = 100% of screen
+              child: Chart(_recentTransactions),
+            )
+          : transactListWidget,
+    ];
+  }
+
+  // Portrait Content
+  List<Widget> _buildPortraitContent(
+    MediaQueryData mediaQuery,
+    AppBar appBar,
+    Widget transactListWidget,
+  ) {
+    return [
+      Container(
+        height: (mediaQuery.size.height -
+                appBar.preferredSize.height -
+                mediaQuery.padding.top) *
+            0.25, // 0 = 0% and 1 = 100% of screen
+        child: Chart(_recentTransactions),
+      ), // Chart Widget
+      transactListWidget, // Transaction List
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     // Store media query object in varible
@@ -156,42 +207,18 @@ class _MyHomePageState extends State<MyHomePage> {
           //mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            if (isLandscape)
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text('Show Chart'),
-                  Switch(
-                    value: _showChart,
-                    onChanged: (val) {
-                      setState(() {
-                        _showChart = val;
-                      });
-                    },
-                  ),
-                ],
-              ),
-            // Chart Widget
-            if (!isLandscape) // Show if orientation is portrait mode
-              Container(
-                height: (mediaQuery.size.height -
-                        appBar.preferredSize.height -
-                        mediaQuery.padding.top) *
-                    0.25, // 0 = 0% and 1 = 100% of screen
-                child: Chart(_recentTransactions),
-              ),
-            if (!isLandscape) transactListWidget,
-
             if (isLandscape) // Show if orientation is landscape mode
-              _showChart
-                  ? Container(
-                      height: (mediaQuery.size.height -
-                              appBar.preferredSize.height -
-                              MediaQuery.of(context).padding.top) *
-                          0.67, // 0 = 0% and 1 = 100% of screen
-                      child: Chart(_recentTransactions),
-                    )
-                  : transactListWidget // Transactions List Widget
+              ..._buildLandscapeContent(
+                mediaQuery,
+                appBar,
+                transactListWidget,
+              ),
+            if (!isLandscape) // Show if orientation is portrait mode
+              ..._buildPortraitContent(
+                mediaQuery,
+                appBar,
+                transactListWidget,
+              ),
           ],
         ),
       ),
