@@ -13,7 +13,7 @@ class NewTransaction extends StatefulWidget {
 class _NewTransactionState extends State<NewTransaction> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
-  DateTime _selectedDate;
+  DateTime _selectedDate = DateTime.now();
 
   // Submit data function
   void _submitData() {
@@ -49,7 +49,8 @@ class _NewTransactionState extends State<NewTransaction> {
       lastDate: DateTime.now(),
     ).then((pickedDate) {
       if (pickedDate == null) {
-        return;
+        //return;
+        return (_selectedDate = DateTime.now());
       }
       setState(() {
         _selectedDate = pickedDate;
@@ -93,9 +94,11 @@ class _NewTransactionState extends State<NewTransaction> {
                 child: Row(children: <Widget>[
                   Expanded(
                     child: Text(
-                      _selectedDate == null
-                          ? 'No Date Chosen!'
-                          : 'Picked Date: ${DateFormat.yMd().format(_selectedDate)}',
+                      //_selectedDate == null
+                      //? 'No Date Chosen!'
+                      //? 'Picked Date: ${DateFormat.yMd().format(DateTime.now())}'
+                      //:
+                      'Picked Date: ${DateFormat.yMd().format(_selectedDate)}',
                     ),
                   ),
                   FlatButton(
