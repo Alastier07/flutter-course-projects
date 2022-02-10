@@ -44,13 +44,13 @@ class _NewTransactionState extends State<NewTransaction> {
   void _presentDatePicker() {
     showDatePicker(
       context: context,
-      initialDate: DateTime.now(),
+      initialDate: _selectedDate, // DateTime.now()
       firstDate: DateTime(2022),
       lastDate: DateTime.now(),
     ).then((pickedDate) {
       if (pickedDate == null) {
         //return;
-        return (_selectedDate = DateTime.now());
+        return (_selectedDate);
       }
       setState(() {
         _selectedDate = pickedDate;
