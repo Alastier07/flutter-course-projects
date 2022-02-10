@@ -119,3 +119,9 @@
 	1. MediaQuery class it allows you to fetch information about the device orientation, measures, user settings etc.
 	2. You can use the data to calculate sizes dynamically or control which widget is (not) display in which way via MediaQuery.
 	3. MediaQuery gives you device information, LayouBuilder gives you constraints that apply to a widget.
+
+-- Widgets, Elements, build() --
+	1. Widget tree provide configuration for element and render tree.
+	2. Element tree connect widget and render tree, manage state, upadate render tree when widget tree changes.
+	3. build() runs very often and re-builds the widget tree (or parts of it).
+	4. Use const to constructor and widgets and splitting the app  into multiple (small) custom widgets for reducing the amount of widgets affected by build().
