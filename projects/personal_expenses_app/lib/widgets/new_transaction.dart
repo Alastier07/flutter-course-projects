@@ -78,7 +78,7 @@ class _NewTransactionState extends State<NewTransaction> {
                 decoration: InputDecoration(labelText: 'Title'),
                 //onChanged: (val) => titleInput = val,
                 controller: _titleController,
-                onSubmitted: (_) => _submitData(),
+                //onSubmitted: (_) => _submitData(),
               ),
               // Input for amount
               TextField(
@@ -86,7 +86,7 @@ class _NewTransactionState extends State<NewTransaction> {
                 //onChanged: (val) => amountInput = val,
                 controller: _amountController,
                 keyboardType: TextInputType.number,
-                onSubmitted: (_) => _submitData(),
+                //onSubmitted: (_) => _submitData(),
               ),
               // DatePicker Text & Button
               Container(
