@@ -125,3 +125,10 @@
 	2. Element tree connect widget and render tree, manage state, upadate render tree when widget tree changes.
 	3. build() runs very often and re-builds the widget tree (or parts of it).
 	4. Use const to constructor and widgets and splitting the app  into multiple (small) custom widgets for reducing the amount of widgets affected by build().
+
+-- Screens and Navigation --
+	1. Screen is a normal widget but it's loaded such that it fills the entire (or the majority) of the device screen. Typically, it also controls the app bar etc.
+	2. There is no technical difference between the different kinds of widgets.
+	3. push() creates the MaterialPageRoute object "on the fly" (i.e. in the place where you call push()) whereas pushNamed() only works with pre-registered routes (in the routes table of your MaterialApp widget).
+	4. You register key (name) value (route builder function) pairs in the routes table of your MaterialApp/ CupertinoApp widget. These are the "named routes" you can use with pushNamed().
+	5. Screen widgets are managed in a stack and you always see the top-most screen. Old screens are also kept around (i.e. not deleted) but currently not visible. If you move back, you see the old page again since the newer page got popped off the stack.
