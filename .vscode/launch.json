@@ -59,6 +59,22 @@
             "args": [
                 "--no-sound-null-safety"
             ]
+        },
+        {
+            "name": "meals_app",
+            "cwd": "projects\\meals_app",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "meals_app (profile mode)",
+            "cwd": "projects\\meals_app_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "args": [
+                "--no-sound-null-safety"
+            ]
         }
     ]
 }
