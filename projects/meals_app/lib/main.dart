@@ -39,7 +39,7 @@ class _MyAppState extends State<MyApp> {
       initialRoute: '/',
       routes: {
         '/': (ctx) => CategoriesScreen(),
-        '/category-meals': (ctx) => CategoryMealsScreen(),
+        CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
       },
     );
   }
