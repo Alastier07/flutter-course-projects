@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './screens/meal_detail_screen.dart';
 import './screens/category_meals_screen.dart';
 import './screens/categories_screen.dart';
 
@@ -40,6 +41,7 @@ class _MyAppState extends State<MyApp> {
       routes: {
         '/': (ctx) => CategoriesScreen(),
         CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
+        MeaLDetailScreen.routeName: (ctx) => MeaLDetailScreen(),
       },
     );
   }
