@@ -43,6 +43,14 @@ class _MyAppState extends State<MyApp> {
         CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
         MeaLDetailScreen.routeName: (ctx) => MeaLDetailScreen(),
       },
+      // This function executed if the name route is not registered in the route table
+      onGenerateRoute: (settings) {
+        //return MaterialPageRoute(builder: (ctx) => CategoriesScreen(),);
+      },
+      // This function will reach when flutter failed to built a screen of other measures like showing 404 error
+      onUnknownRoute: (settings) {
+        //return MaterialPageRoute(builder: (ctx) => CategoriesScreen(),);
+      },
     );
   }
 }
