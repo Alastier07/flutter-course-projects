@@ -132,3 +132,8 @@
 	3. push() creates the MaterialPageRoute object "on the fly" (i.e. in the place where you call push()) whereas pushNamed() only works with pre-registered routes (in the routes table of your MaterialApp widget).
 	4. You register key (name) value (route builder function) pairs in the routes table of your MaterialApp/ CupertinoApp widget. These are the "named routes" you can use with pushNamed().
 	5. Screen widgets are managed in a stack and you always see the top-most screen. Old screens are also kept around (i.e. not deleted) but currently not visible. If you move back, you see the old page again since the newer page got popped off the stack.
+
+-- More Navigation --
+	1. onGenerateRoute is your fallback/ option to have more control about the creation + configuration of routing actions (= MaterialPageRoute that then loads a specific screen widget).
+	2. onGenerateRoute executes for any unregistered name route, onUnknownRoute executes if onGenerateRoute isnt defined or doesnt return a valid navigation action.
+
