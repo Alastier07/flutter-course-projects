@@ -36,6 +36,7 @@ class MeaLDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final mealId = ModalRoute.of(context).settings.arguments as String;
     final selectedMeal = DUMMY_MEALS.firstWhere((meal) => meal.id == mealId);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('${selectedMeal.title}'),
@@ -86,6 +87,14 @@ class MeaLDetailScreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          Icons.delete,
+        ),
+        onPressed: () {
+          Navigator.of(context).pop(mealId);
+        },
       ),
     );
   }
