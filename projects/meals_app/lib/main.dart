@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './screens/filters_screen.dart';
 import './screens/tabs_screen.dart';
 import './screens/meal_detail_screen.dart';
 import './screens/category_meals_screen.dart';
@@ -43,6 +44,7 @@ class _MyAppState extends State<MyApp> {
         '/': (ctx) => TabsScreen(),
         CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
         MeaLDetailScreen.routeName: (ctx) => MeaLDetailScreen(),
+        FiltersScreen.routeName: (ctx) => FiltersScreen(),
       },
       // This function executed if the name route is not registered in the route table
       onGenerateRoute: (settings) {
