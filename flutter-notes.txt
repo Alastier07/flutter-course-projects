@@ -137,3 +137,7 @@
 	1. onGenerateRoute is your fallback/ option to have more control about the creation + configuration of routing actions (= MaterialPageRoute that then loads a specific screen widget).
 	2. onGenerateRoute executes for any unregistered name route, onUnknownRoute executes if onGenerateRoute isnt defined or doesnt return a valid navigation action.
 
+-- Tabs & Drawer --
+	1. Tabs basically switch between screens, whereas push & pushNamed add and remove screens to / from the stack.
+	2. You register both drawers and tab bars in the Scaffold (Tabs can potentially also be registered on the AppBar but that's also registered in the Scaffold widget in turn).
+
