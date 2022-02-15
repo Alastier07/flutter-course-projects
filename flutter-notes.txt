@@ -146,3 +146,9 @@
 	2. then() triggers fn as soon as you leave (pop) the new screen that was loaded via push().
 	3. The data you pass to pop() is automatically passed into the function (as an argument) that executes inside of then() once pop() is triggered.
 
+-- State, State Management & The Provider Package/Approach
+	1. State => the data your app uses (and which may change over time) to render the UI.
+	2. Why might StatefulWidgets alone not do the trick (in bigger/ more complex Flutter apps)?
+		=> Multiple widgets may depend on the same update state - sharing it via widget constructors can be cumbersome and inefficient (e.g. too many build() calls).
+	3. Provider package/ the state management solution offer
+		=> You provide values somewhere in your widget tree (has to be "above" the widgets that want to listen though) and you then listen in the widgets which should rebuild upon changes. notifyListeners() is called in the provided class/ object to notify listeners about changes.
