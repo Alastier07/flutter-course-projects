@@ -152,3 +152,9 @@
 		=> Multiple widgets may depend on the same update state - sharing it via widget constructors can be cumbersome and inefficient (e.g. too many build() calls).
 	3. Provider package/ the state management solution offer
 		=> You provide values somewhere in your widget tree (has to be "above" the widgets that want to listen though) and you then listen in the widgets which should rebuild upon changes. notifyListeners() is called in the provided class/ object to notify listeners about changes.
+
+-- More on State Management & The Provider Packeage --
+	1. Consumer only rebuilds the widgets that are part of its builder, Provider.of() on the other hand triggers a complete re-build (i.e. re-runs build()) of this widget's widget tree.
+	2. Provider.of<...> sets up a LISTENER to provided data, it does NOT provide data to other listeners itself.
+	3. Good example for local state which you would typically handle via a StatefulWidget instead of a provided object (i.e. instead of via the Provider package).
+		=> Some state/ data that only matters to one (or a few) widgets. It certainly doesn't need to be managed globally.
