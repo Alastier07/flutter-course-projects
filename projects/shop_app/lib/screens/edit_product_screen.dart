@@ -268,6 +268,21 @@ class _EditProductScreenState extends State<EditProductScreen> {
                   ),
                 ],
               ),
+              SizedBox(
+                height: 20,
+              ),
+              RaisedButton(
+                padding: EdgeInsets.symmetric(vertical: 10),
+                onPressed: _saveForm,
+                child: const Text(
+                  'Save',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                  ),
+                ),
+                color: Theme.of(context).primaryColor,
+              ),
             ],
           ),
         ),
