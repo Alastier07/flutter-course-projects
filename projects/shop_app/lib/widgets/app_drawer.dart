@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../screens/orders_screen.dart';
+import '../screens/user_products_screen.dart';
 
 class AppDrawer extends StatelessWidget {
   Widget listTileNavigation(
@@ -27,6 +28,9 @@ class AppDrawer extends StatelessWidget {
           listTileNavigation(context, 'Shop', '/'),
           Divider(),
           listTileNavigation(context, 'Orders', OrdersScreen.routeName),
+          Divider(),
+          listTileNavigation(
+              context, 'Manage Products', UserProductsScreen.routeName),
         ],
       ),
     );
