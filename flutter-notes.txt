@@ -158,3 +158,14 @@
 	2. Provider.of<...> sets up a LISTENER to provided data, it does NOT provide data to other listeners itself.
 	3. Good example for local state which you would typically handle via a StatefulWidget instead of a provided object (i.e. instead of via the Provider package).
 		=> Some state/ data that only matters to one (or a few) widgets. It certainly doesn't need to be managed globally.
+
+-- HTTP Requests & Futures --
+	1. Flutter apps typically connect to a database via http requests are sent to web servers which then may talk a database.
+		=> Setting up a direct connection is insecure. Instead, you send requests to a web server (= web API, typically a REST API).
+	2. Flutter app sends request with specific http verbs and endpoints (path) to the Web server (=API).
+		=> The app sends http requests to so-called "API endpoints" - combinations of the paths  and http verbs like POST, GET, PATCH, ...
+	3. POST request => Sending data with a POST request (to an API) should add new data on the server / in the database.
+		=> What happens on the server is defined by the server (i.e. the server also just executes code, so it does what the code tells him to do). You could theoretically program a server to delete data upon incoming POST requests. But typically, POST indicates that new data should be added.
+	4. Future in Dart => An object which for asynchronous operation to complete and then (possibly) resolve some data.
+		=> Futures help you work with asynchronous data.
+	5. Async code is all about running once something happened (e.g. a Http response arrived) without blocking the other code in your program.
