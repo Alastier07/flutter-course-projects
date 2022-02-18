@@ -145,7 +145,7 @@ class Products with ChangeNotifier {
     }
   }
 
-  void deleteProduct(String id) {
+  Future<void> deleteProduct(String id) async {
     final url = Uri.parse(
         'https://flutter-training-a2482-default-rtdb.asia-southeast1.firebasedatabase.app/products/$id.json');
     final existingProductIndex = _items.indexWhere((prod) => prod.id == id);
@@ -153,14 +153,13 @@ class Products with ChangeNotifier {
     // _items.removeWhere((prod) => prod.id == id);
     _items.removeAt(existingProductIndex);
     notifyListeners();
-    http.delete(url).then((response) {
-      if (response.statusCode >= 400) {
-        throw HttpException('Could not delete product.');
-      }
-      existingProduct = null;
-    }).catchError((_) {
+    final response = await http.delete(url);
+
+    if (response.statusCode >= 400) {
       _items.insert(existingProductIndex, existingProduct);
       notifyListeners();
-    });
+      throw HttpException('Could not delete product.');
+    }
+    existingProduct = null;
   }
 }
