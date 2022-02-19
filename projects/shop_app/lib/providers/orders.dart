@@ -70,7 +70,7 @@ class Orders with ChangeNotifier {
           'products': cartProducts
               .map((cp) => {
                     'id': cp.id,
-                    'tilte': cp.title,
+                    'title': cp.title,
                     'quantity': cp.quantity,
                     'price': cp.price,
                   })
