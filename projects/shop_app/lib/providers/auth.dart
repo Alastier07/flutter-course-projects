@@ -77,4 +77,11 @@ class Auth with ChangeNotifier {
       'signInWithPassword',
     );
   }
+
+  void logout() {
+    _token = null;
+    _userId = null;
+    _expiryDate = null;
+    notifyListeners();
+  }
 }

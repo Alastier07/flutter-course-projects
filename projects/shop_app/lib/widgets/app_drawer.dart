@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../screens/orders_screen.dart';
 import '../screens/user_products_screen.dart';
+import '../providers/auth.dart';
 
 class AppDrawer extends StatelessWidget {
   Widget listTileNavigation(
-      BuildContext context, String title, String routeName) {
+      BuildContext context, String title, String routeName, Icon icon) {
     return ListTile(
-      leading: Icon(Icons.shop),
+      leading: icon,
       title: Text(title),
       onTap: () {
         Navigator.of(context).pushReplacementNamed(routeName);
@@ -25,12 +27,36 @@ class AppDrawer extends StatelessWidget {
             automaticallyImplyLeading: false,
           ),
           Divider(),
-          listTileNavigation(context, 'Shop', '/'),
-          Divider(),
-          listTileNavigation(context, 'Orders', OrdersScreen.routeName),
+          listTileNavigation(
+            context,
+            'Shop',
+            '/',
+            Icon(Icons.shop),
+          ),
           Divider(),
           listTileNavigation(
-              context, 'Manage Products', UserProductsScreen.routeName),
+            context,
+            'Orders',
+            OrdersScreen.routeName,
+            Icon(Icons.payment),
+          ),
+          Divider(),
+          listTileNavigation(
+            context,
+            'Manage Products',
+            UserProductsScreen.routeName,
+            Icon(Icons.edit),
+          ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.exit_to_app),
+            title: Text('Logout'),
+            onTap: () {
+              Navigator.of(context).pop();
+              // Navigator.of(context).pushReplacementNamed(routeName);
+              Provider.of<Auth>(context, listen: false).logout();
+            },
+          )
         ],
       ),
     );
