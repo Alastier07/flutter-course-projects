@@ -40,6 +40,7 @@ class Auth with ChangeNotifier {
           },
         ),
       );
+      // print(json.decode(response.body));
       final responseData = json.decode(response.body);
       if (responseData['error'] != null) {
         throw HttpException(responseData['error']['message']);
@@ -55,8 +56,6 @@ class Auth with ChangeNotifier {
     } catch (error) {
       throw error;
     }
-
-    // print(json.decode(response.body));
   }
 
   Future<void> singup(String email, String password) async {
