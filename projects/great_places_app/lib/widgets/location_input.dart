@@ -4,12 +4,18 @@ import 'package:location/location.dart';
 import '../helpers/location_helper.dart';
 
 class LocationInput extends StatefulWidget {
+  final Function onSelectPlace;
+
+  LocationInput(this.onSelectPlace);
+
   @override
   _LocationInputState createState() => _LocationInputState();
 }
 
 class _LocationInputState extends State<LocationInput> {
   String _previewImageUrl;
+  final _addressController = TextEditingController();
+  String _locationAPI;
 
   Future<void> _getCurrentUserLocation() async {
     final locData = await Location().getLocation();
@@ -21,12 +27,54 @@ class _LocationInputState extends State<LocationInput> {
       _previewImageUrl = staticMapImageUrl;
       // print(_previewImageUrl);
     });
+    _locationAPI = '${locData.latitude},${locData.longitude}';
+    widget.onSelectPlace(_locationAPI);
+  }
+
+  Future<void> _getAddressInputLocation() async {
+    String _addressInput = _addressController.text;
+
+    if (_addressInput == null || _addressInput == '') {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: Text('An Error Occured!'),
+          content: Text('Please provide location address.'),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Okay'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            )
+          ],
+        ),
+      );
+    } else {
+      _locationAPI = _addressInput.replaceAll(' ', '+');
+      final staticMapImageUrl =
+          LocationHelper.generateAddressPreviewImage(_locationAPI);
+      setState(() {
+        _previewImageUrl = staticMapImageUrl;
+        // print(_previewImageUrl);
+      });
+      widget.onSelectPlace(_locationAPI);
+      // final placeDetails = await LocationHelper.getPlaceAddress(_locationAPI);
+      // print(placeDetails.first['plAddress']);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
+        TextField(
+          decoration: InputDecoration(labelText: 'Address (Optional)'),
+          controller: _addressController,
+        ),
+        SizedBox(
+          height: 10,
+        ),
         Container(
           height: 170,
           width: double.infinity,
@@ -59,9 +107,9 @@ class _LocationInputState extends State<LocationInput> {
             ),
             FlatButton.icon(
               icon: Icon(Icons.map),
-              label: Text('Select on Map'),
+              label: Text('Address Location'),
               textColor: Theme.of(context).primaryColor,
-              onPressed: () {},
+              onPressed: _getAddressInputLocation,
             ),
           ],
         ),
