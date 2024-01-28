@@ -13,3 +13,13 @@ This Flutter course projects was initiated two years ago and served as a compreh
 - **Authentication**: Implementing user authentication features.
 - **Testing**: Writing tests for different components of the app.
 
+## How to Update
+
+- On android/build.gradle update "compileSdkVersion" to 33.
+- On andoid/gradle.properties update "org.gradle.jvmargs".
+    org.gradle.jvmargs=-Xmx1536M --add-exports=java.base/sun.nio.ch=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED
+- On andoid/gradle-wrapper.properties update "distributionUrl".
+    distributionUrl=https\://services.gradle.org/distributions/gradle-7.6-all.zip
+- On pubspec.yaml update environment to sdk: ">=3.0.0 <4.0.0".
+- Perform "flutter clean".
+- Perform "flutter pub upgrade".
