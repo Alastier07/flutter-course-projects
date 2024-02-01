@@ -23,3 +23,5 @@ This Flutter course projects was initiated two years ago and served as a compreh
 - On pubspec.yaml update environment to sdk: ">=3.0.0 <4.0.0".
 - Perform "flutter clean".
 - Perform "flutter pub upgrade".
+
+## To check updated version of every project go to list of branch
