@@ -24,4 +24,6 @@ This Flutter course projects was initiated two years ago and served as a compreh
 - Perform "flutter clean".
 - Perform "flutter pub upgrade".
 
+- Deprecated imperative apply of Flutter's Gradle plugins: https://docs.flutter.dev/release/breaking-changes/flutter-gradle-plugin-apply
+
 ## To check updated version of every project go to list of branch
