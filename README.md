@@ -11,7 +11,6 @@ This Flutter course projects was initiated two years ago and served as a compreh
 - **API Integration**: Connecting the app to external APIs.
 - **Navigation**: Navigating between different screens.
 - **Authentication**: Implementing user authentication features.
-- **Testing**: Writing tests for different components of the app.
 
 ## How to Update
 
@@ -25,3 +24,11 @@ This Flutter course projects was initiated two years ago and served as a compreh
 - Deprecated imperative apply of Flutter's Gradle plugins: https://docs.flutter.dev/release/breaking-changes/flutter-gradle-plugin-apply
 
 ## To check updated version of every project go to list of branch
+- basic_flutter_app
+- chat_app
+- first_assignment *OK
+- flutter_intro *OK
+- great_places_app
+- meals_app
+- personal_expenses_app *OK
+- shop_app
