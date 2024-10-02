@@ -7,7 +7,7 @@ class FiltersScreen extends StatefulWidget {
   final Function saveFilters;
   final Map<String, bool> currentFilters;
 
-  FiltersScreen(this.currentFilters, this.saveFilters);
+  const FiltersScreen(this.currentFilters, this.saveFilters, {super.key});
 
   @override
   State<FiltersScreen> createState() => _FiltersScreenState();
@@ -21,10 +21,10 @@ class _FiltersScreenState extends State<FiltersScreen> {
 
   @override
   initState() {
-    _glutenFree = widget.currentFilters['gluten'];
-    _lactoseFree = widget.currentFilters['lactose'];
-    _vegan = widget.currentFilters['vegan'];
-    _vegetarian = widget.currentFilters['vegetarian'];
+    _glutenFree = widget.currentFilters['gluten']!;
+    _lactoseFree = widget.currentFilters['lactose']!;
+    _vegan = widget.currentFilters['vegan']!;
+    _vegetarian = widget.currentFilters['vegetarian']!;
     super.initState();
   }
 
@@ -32,7 +32,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
     String title,
     String description,
     bool currentValue,
-    Function updateValue,
+    Function(bool) updateValue,
   ) {
     return SwitchListTile(
       title: Text(title),
@@ -46,12 +46,12 @@ class _FiltersScreenState extends State<FiltersScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Your Filters',
         ),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.save),
+            icon: const Icon(Icons.save),
             onPressed: () {
               final selectedFilters = {
                 'gluten': _glutenFree,
@@ -64,14 +64,14 @@ class _FiltersScreenState extends State<FiltersScreen> {
           )
         ],
       ),
-      drawer: MainDrawer(),
+      drawer: const MainDrawer(),
       body: Column(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: Text(
               'Adjust your meal selection.',
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
           ),
           Expanded(

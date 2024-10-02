@@ -8,14 +8,14 @@ class MeaLDetailScreen extends StatelessWidget {
   final Function toggleFavorite;
   final Function isFavorite;
 
-  MeaLDetailScreen(this.toggleFavorite, this.isFavorite);
+  const MeaLDetailScreen(this.toggleFavorite, this.isFavorite, {super.key});
 
   Widget buildSectionTitle(BuildContext context, String text) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: const EdgeInsets.symmetric(vertical: 10),
       child: Text(
         text,
-        style: Theme.of(context).textTheme.headline6,
+        style: Theme.of(context).textTheme.headlineMedium,
       ),
     );
   }
@@ -29,8 +29,8 @@ class MeaLDetailScreen extends StatelessWidget {
         ),
         borderRadius: BorderRadius.circular(10),
       ),
-      margin: EdgeInsets.all(10),
-      padding: EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       height: 200,
       width: 300,
       child: child,
@@ -39,17 +39,17 @@ class MeaLDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mealId = ModalRoute.of(context).settings.arguments as String;
+    final mealId = ModalRoute.of(context)?.settings.arguments as String;
     final selectedMeal = DUMMY_MEALS.firstWhere((meal) => meal.id == mealId);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('${selectedMeal.title}'),
+        title: Text(selectedMeal.title),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Container(
+            SizedBox(
               height: 300,
               width: double.infinity,
               child: Image.network(
@@ -61,7 +61,7 @@ class MeaLDetailScreen extends StatelessWidget {
             buildContainer(
               ListView.builder(
                 itemBuilder: (ctx, index) => Card(
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                       vertical: 5,
@@ -84,7 +84,7 @@ class MeaLDetailScreen extends StatelessWidget {
                       ),
                       title: Text(selectedMeal.steps[index]),
                     ),
-                    Divider(),
+                    const Divider(),
                   ],
                 ),
                 itemCount: selectedMeal.steps.length,

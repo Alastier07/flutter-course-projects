@@ -11,15 +11,15 @@ class CategoryMealsScreen extends StatefulWidget {
 
   final List<Meal> availableMeals;
 
-  CategoryMealsScreen(this.availableMeals);
+  const CategoryMealsScreen(this.availableMeals, {super.key});
 
   @override
   State<CategoryMealsScreen> createState() => _CategoryMealsScreenState();
 }
 
 class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
-  String categoryTitle;
-  List<Meal> displayedMeals;
+  String categoryTitle = '';
+  List<Meal> displayedMeals = <Meal>[];
   var _loadedInitData = false;
 
   @override
@@ -31,8 +31,8 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
   void didChangeDependencies() {
     if (!_loadedInitData) {
       final routeArgs =
-          ModalRoute.of(context).settings.arguments as Map<String, String>;
-      categoryTitle = routeArgs['title'];
+          ModalRoute.of(context)?.settings.arguments as Map<String, String>;
+      categoryTitle = routeArgs['title']!;
       final categoryId = routeArgs['id'];
       displayedMeals = widget.availableMeals.where((meal) {
         return meal.categories.contains(categoryId);
