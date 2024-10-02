@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../models/transaction.dart';
 import './transaction_list_item.dart';
@@ -8,7 +7,8 @@ class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
   final Function deleteTx;
 
-  TransactionList(this.transactions, this.deleteTx); //Constructor
+  const TransactionList(this.transactions, this.deleteTx,
+      {super.key}); //Constructor
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +19,11 @@ class TransactionList extends StatelessWidget {
               children: <Widget>[
                 Text(
                   'No transaction added yet!',
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.headlineMedium,
                 ),
-                SizedBox(
-                  height: 20,
-                ),
+                const SizedBox(height: 20),
                 // Image
-                Container(
+                SizedBox(
                     height: contraints.maxHeight * 0.8,
                     child: Image.asset(
                       // 'assets/images/empty.png',

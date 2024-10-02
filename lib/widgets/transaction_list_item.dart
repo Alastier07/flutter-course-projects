@@ -5,10 +5,10 @@ import '../models/transaction.dart';
 
 class TransactionListItem extends StatelessWidget {
   const TransactionListItem({
-    Key key,
-    @required this.transactions,
-    @required this.deleteTx,
-  }) : super(key: key);
+    required this.transactions,
+    required this.deleteTx,
+    super.key,
+  });
 
   final Transaction transactions;
   final Function deleteTx;
@@ -17,7 +17,7 @@ class TransactionListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 5,
-      margin: EdgeInsets.symmetric(
+      margin: const EdgeInsets.symmetric(
         vertical: 8,
         horizontal: 5,
       ),
@@ -25,7 +25,7 @@ class TransactionListItem extends StatelessWidget {
         leading: CircleAvatar(
           radius: 30,
           child: Padding(
-            padding: EdgeInsets.all(6),
+            padding: const EdgeInsets.all(6),
             child: FittedBox(
               child: Text(
                 '₱${transactions.amount.toStringAsFixed(2)}', // Amount
@@ -35,21 +35,25 @@ class TransactionListItem extends StatelessWidget {
         ),
         title: Text(
           transactions.title, // Title
-          style: Theme.of(context).textTheme.headline6,
+          style: Theme.of(context).textTheme.headlineMedium,
         ),
         subtitle: Text(
           DateFormat.yMMMd().format(transactions.date), // Date
         ),
         trailing: MediaQuery.of(context).size.width > 460
-            ? FlatButton.icon(
-                icon: Icon(Icons.delete),
-                label: Text('Delete'),
-                textColor: Theme.of(context).errorColor,
+            ? TextButton.icon(
+                icon: const Icon(Icons.delete),
+                label: const Text('Delete'),
+                style: TextButton.styleFrom(
+                  foregroundColor: Theme.of(context).colorScheme.error,
+                ),
                 onPressed: () => deleteTx(transactions.id),
               )
             : IconButton(
-                icon: Icon(Icons.delete),
-                color: Theme.of(context).errorColor,
+                icon: const Icon(Icons.delete),
+                style: TextButton.styleFrom(
+                  foregroundColor: Theme.of(context).colorScheme.error,
+                ),
                 onPressed: () => deleteTx(transactions.id),
               ), // Delete Button
       ),

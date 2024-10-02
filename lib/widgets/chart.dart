@@ -6,7 +6,7 @@ import '../models/transaction.dart';
 class Chart extends StatelessWidget {
   final List<Transaction> recentTransactions;
 
-  Chart(this.recentTransactions); //Constructor
+  const Chart(this.recentTransactions, {super.key}); //Constructor
 
   // List of transaction in before 6 days until now
   List<Map<String, Object>> get groupedTransactionValues {
@@ -34,7 +34,7 @@ class Chart extends StatelessWidget {
   // Total Spending of 7 days transactions
   double get totalSpending {
     return groupedTransactionValues.fold(0.0, (sum, item) {
-      return sum + item['amount'];
+      return sum + (item['amount'] as double);
     });
   }
 
@@ -42,17 +42,17 @@ class Chart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 6,
-      margin: EdgeInsets.all(20),
+      margin: const EdgeInsets.all(20),
       child: Padding(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: groupedTransactionValues.map((data) {
             return Flexible(
               fit: FlexFit.tight,
               child: ChartBar(
-                data['day'], // Day
-                data['amount'], // Total amount
+                data['day'] as String, // Day
+                data['amount'] as double, // Total amount
                 totalSpending == 0.0
                     ? 0.0
                     : (data['amount'] as double) /

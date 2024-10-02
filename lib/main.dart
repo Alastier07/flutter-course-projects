@@ -12,30 +12,30 @@ void main() {
   //   DeviceOrientation.portraitDown,
   // ]); // Control app orientation to portrait only
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Personal Expenses',
       home: MyHomePage(),
       theme: ThemeData(
+        useMaterial3: true,
         primarySwatch: Colors.purple,
-        accentColor: Colors.amber,
+        colorScheme: const ColorScheme.light(secondary: Colors.amber),
         fontFamily: 'Quicksand',
         textTheme: ThemeData.light().textTheme.copyWith(
-              headline6: TextStyle(
+              headlineMedium: const TextStyle(
                 fontFamily: 'OpenSans',
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
               ),
-              button: TextStyle(
-                color: Colors.white,
-              ),
             ),
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           titleTextStyle: TextStyle(
             fontFamily: 'OpenSans',
             fontSize: 20,
