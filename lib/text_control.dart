@@ -3,17 +3,19 @@ import 'package:flutter/material.dart';
 class NextMessage extends StatelessWidget {
   final VoidCallback messageHandler;
 
-  NextMessage(this.messageHandler);
+  const NextMessage(this.messageHandler, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
-      child: RaisedButton(
-        child: Text('Next'),
+      child: ElevatedButton(
+        child: const Text('Next'),
         onPressed: messageHandler,
-        textColor: Colors.white,
-        color: Colors.blue,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.blue,
+          foregroundColor: Colors.white,
+        ),
       ),
     );
   }

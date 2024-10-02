@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 import './text.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
