@@ -82,7 +82,7 @@ class Products with ChangeNotifier {
     try {
       final response = await http.get(url);
       // print(json.decode(response.body));
-      final extractedData = json.decode(response.body) as Map<String, dynamic>;
+      final extractedData = json.decode(response.body) as Map<String, dynamic>?;
       if (extractedData == null) {
         return;
       }
@@ -175,6 +175,6 @@ class Products with ChangeNotifier {
       notifyListeners();
       throw HttpException('Could not delete product.');
     }
-    existingProduct = null;
+    // existingProduct = null;
   }
 }

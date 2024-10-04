@@ -12,10 +12,10 @@ class OrderItem {
   final DateTime dateTime;
 
   OrderItem({
-    @required this.id,
-    @required this.amount,
-    @required this.products,
-    @required this.dateTime,
+    required this.id,
+    required this.amount,
+    required this.products,
+    required this.dateTime,
   });
 }
 
@@ -34,13 +34,13 @@ class Orders with ChangeNotifier {
     final url = Uri.parse(
         'https://flutter-training-a2482-default-rtdb.asia-southeast1.firebasedatabase.app/orders/$userId.json?auth=${authToken}');
     final response = await http.get(url);
-    // print(json.decode(response.body));
+
     final List<OrderItem> loadedOrders = [];
+
+    if (json.decode(response.body) == null) _orders = loadedOrders;
+
     final extractedData = json.decode(response.body) as Map<String, dynamic>;
-    if (extractedData == null) {
-      _orders = loadedOrders;
-      return;
-    }
+
     extractedData.forEach((orderId, orderData) {
       loadedOrders.add(
         OrderItem(
@@ -61,6 +61,7 @@ class Orders with ChangeNotifier {
       );
     });
     _orders = loadedOrders.reversed.toList();
+    print(_orders);
     notifyListeners();
   }
 

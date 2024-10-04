@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:http/http.dart';
+// import 'package:http/http.dart';
 
 import '../widgets/products_grid.dart';
-import '../widgets/badge.dart';
+import '../widgets/badge.dart' as badgewidget;
 import '../widgets/app_drawer.dart';
 
 import '../providers/cart.dart';
@@ -82,8 +82,8 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
             ],
           ),
           Consumer<Cart>(
-            builder: (_, cart, ch) => Badge(
-              child: ch,
+            builder: (_, cart, ch) => badgewidget.Badge(
+              child: ch!,
               value: cart.itemCount.toString(),
             ),
             child: IconButton(

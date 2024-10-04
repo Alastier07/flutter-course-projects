@@ -43,9 +43,10 @@ class ProductItem extends StatelessWidget {
                   product.isFavorite ? Icons.favorite : Icons.favorite_border,
                 ),
                 onPressed: () {
-                  product.toggleFavoriteStatus(authData.token, authData.userId);
+                  product.toggleFavoriteStatus(
+                      authData.token!, authData.userId!);
                 },
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).colorScheme.secondary,
               ),
             ),
             backgroundColor: Colors.black87,
@@ -71,7 +72,7 @@ class ProductItem extends StatelessWidget {
                   ),
                 );
               },
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).colorScheme.secondary,
             ),
           ),
         ),

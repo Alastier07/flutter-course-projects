@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+// import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/product.dart';
@@ -19,7 +19,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
   final _imageUrlFocusNode = FocusNode();
   final _form = GlobalKey<FormState>();
   var _editedProduct = Product(
-    id: null,
+    id: '',
     title: '',
     description: '',
     price: 0,
@@ -45,8 +45,8 @@ class _EditProductScreenState extends State<EditProductScreen> {
   @override
   void didChangeDependencies() {
     if (_isInit) {
-      final productId = ModalRoute.of(context).settings.arguments as String;
-      if (productId != null) {
+      final productId = ModalRoute.of(context)?.settings.arguments as String;
+      if (productId.isNotEmpty) {
         _editedProduct =
             Provider.of<Products>(context, listen: false).findById(productId);
         _initValues = {
@@ -89,15 +89,15 @@ class _EditProductScreenState extends State<EditProductScreen> {
   }
 
   Future<void> _saveForm() async {
-    final isValid = _form.currentState.validate();
+    final isValid = _form.currentState!.validate();
     if (!isValid) {
       return;
     }
     setState(() {
       _isLoading = true;
     });
-    _form.currentState.save();
-    if (_editedProduct.id != null) {
+    _form.currentState!.save();
+    if (_editedProduct.id.isNotEmpty) {
       await Provider.of<Products>(context, listen: false)
           .updateProduct(_editedProduct.id, _editedProduct);
     } else {
@@ -111,7 +111,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
             title: Text('An error occured!'),
             content: Text('Something went wrong.'),
             actions: <Widget>[
-              FlatButton(
+              TextButton(
                 child: Text('Okay'),
                 onPressed: () {
                   Navigator.of(ctx).pop();
@@ -165,7 +165,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                         FocusScope.of(context).requestFocus(_priceFocusNode);
                       },
                       validator: (value) {
-                        if (value.isEmpty) {
+                        if (value!.isEmpty) {
                           return 'Please provide a value.';
                         } else {
                           return null;
@@ -174,7 +174,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       onSaved: (value) {
                         _editedProduct = Product(
                           id: _editedProduct.id,
-                          title: value,
+                          title: value ?? '',
                           description: _editedProduct.description,
                           price: _editedProduct.price,
                           imageUrl: _editedProduct.imageUrl,
@@ -193,7 +193,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                             .requestFocus(_descriptionFocusNode);
                       },
                       validator: (value) {
-                        if (value.isEmpty) {
+                        if (value!.isEmpty) {
                           return 'Please enter a price.';
                         }
                         if (double.tryParse(value) == null) {
@@ -209,7 +209,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                           id: _editedProduct.id,
                           title: _editedProduct.title,
                           description: _editedProduct.description,
-                          price: double.parse(value),
+                          price: double.parse(value!),
                           imageUrl: _editedProduct.imageUrl,
                           isFavorite: _editedProduct.isFavorite,
                         );
@@ -222,7 +222,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       keyboardType: TextInputType.multiline,
                       focusNode: _descriptionFocusNode,
                       validator: (value) {
-                        if (value.isEmpty) {
+                        if (value!.isEmpty) {
                           return 'Please enter a desciption.';
                         }
                         return null;
@@ -231,7 +231,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                         _editedProduct = Product(
                           id: _editedProduct.id,
                           title: _editedProduct.title,
-                          description: value,
+                          description: value ?? '',
                           price: _editedProduct.price,
                           imageUrl: _editedProduct.imageUrl,
                           isFavorite: _editedProduct.isFavorite,
@@ -278,7 +278,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                               FocusScope.of(context).requestFocus(FocusNode());
                             },
                             validator: (value) {
-                              if (value.isEmpty) {
+                              if (value!.isEmpty) {
                                 return 'Please enter an image URL';
                               }
                               // if (!value.startsWith('http') &&
@@ -298,7 +298,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                                 title: _editedProduct.title,
                                 description: _editedProduct.description,
                                 price: _editedProduct.price,
-                                imageUrl: value,
+                                imageUrl: value ?? '',
                                 isFavorite: _editedProduct.isFavorite,
                               );
                             },
@@ -309,8 +309,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                     SizedBox(
                       height: 20,
                     ),
-                    RaisedButton(
-                      padding: EdgeInsets.symmetric(vertical: 10),
+                    ElevatedButton(
                       onPressed: _saveForm,
                       child: const Text(
                         'Save',
@@ -319,7 +318,10 @@ class _EditProductScreenState extends State<EditProductScreen> {
                           fontSize: 20,
                         ),
                       ),
-                      color: Theme.of(context).primaryColor,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Theme.of(context).primaryColor,
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                      ),
                     ),
                   ],
                 ),
