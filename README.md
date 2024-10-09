@@ -28,7 +28,7 @@ This Flutter course projects was initiated two years ago and served as a compreh
 - chat_app
 - first_assignment *OK
 - flutter_intro *OK
-- great_places_app
+- great_places_app *OK
 - meals_app *OK
 - personal_expenses_app *OK
 - shop_app *OK
