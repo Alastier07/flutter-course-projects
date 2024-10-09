@@ -1,10 +1,9 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../models/place.dart';
 import '../helpers/db_helper.dart';
-import '../helpers/location_helper.dart';
+// import '../helpers/location_helper.dart';
 
 class GreatPlaces with ChangeNotifier {
   List<Place> _items = [];
@@ -19,22 +18,22 @@ class GreatPlaces with ChangeNotifier {
 
   Future<void> addPlace(
     String pickedTitle,
-    File pickedImage,
-    PlaceLocation pickedLocation,
+    XFile pickedImage,
+    // PlaceLocation pickedLocation,
   ) async {
-    final placeDetails =
-        await LocationHelper.getPlaceAddress(pickedLocation.address);
+    // final placeDetails =
+    //     await LocationHelper.getPlaceAddress(pickedLocation.address);
     // print(placeDetails.first['plAddress']);
-    final updatedLocation = PlaceLocation(
-      latitude: placeDetails.first['plLat'],
-      longitude: placeDetails.first['plLng'],
-      address: placeDetails.first['plAddress'],
-    );
+    // final updatedLocation = PlaceLocation(
+    //   latitude: placeDetails.first['plLat'],
+    //   longitude: placeDetails.first['plLng'],
+    //   address: placeDetails.first['plAddress'],
+    // );
     final newPlace = Place(
       id: DateTime.now().toString(),
       image: pickedImage,
       title: pickedTitle,
-      location: updatedLocation,
+      // location: updatedLocation,
     );
     _items.add(newPlace);
     notifyListeners();
@@ -42,9 +41,9 @@ class GreatPlaces with ChangeNotifier {
       'id': newPlace.id,
       'title': newPlace.title,
       'image': newPlace.image.path,
-      'loc_lat': newPlace.location.latitude,
-      'loc_lng': newPlace.location.longitude,
-      'address': newPlace.location.address,
+      // 'loc_lat': newPlace.location.latitude,
+      // 'loc_lng': newPlace.location.longitude,
+      // 'address': newPlace.location.address,
     });
   }
 
@@ -52,17 +51,14 @@ class GreatPlaces with ChangeNotifier {
     final dataList = await DBHelper.getData('user_places');
     _items = dataList
         .map((item) => Place(
-              id: item['id'],
-              title: item['title'],
-              location: PlaceLocation(
-                latitude: item['loc_lat'],
-                longitude: item['loc_lng'],
-                address: item['address'],
-              ),
-              image: File(
-                item['image'],
-              ),
-            ))
+            id: item['id'],
+            title: item['title'],
+            // location: PlaceLocation(
+            //   latitude: item['loc_lat'],
+            //   longitude: item['loc_lng'],
+            //   address: item['address'],
+            // ),
+            image: item['image']))
         .toList();
     notifyListeners();
   }

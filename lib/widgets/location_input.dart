@@ -13,18 +13,18 @@ class LocationInput extends StatefulWidget {
 }
 
 class _LocationInputState extends State<LocationInput> {
-  String _previewImageUrl;
+  // String? _previewImageUrl;
   final _addressController = TextEditingController();
-  String _locationAPI;
+  String? _locationAPI;
 
   Future<void> _getCurrentUserLocation() async {
     final locData = await Location().getLocation();
     final staticMapImageUrl = LocationHelper.generateLocationPreviewImage(
-      latitude: locData.latitude,
-      longitude: locData.longitude,
+      latitude: locData.latitude!,
+      longitude: locData.longitude!,
     );
     setState(() {
-      _previewImageUrl = staticMapImageUrl;
+      // _previewImageUrl = staticMapImageUrl;
       // print(_previewImageUrl);
     });
     _locationAPI = '${locData.latitude},${locData.longitude}';
@@ -34,14 +34,14 @@ class _LocationInputState extends State<LocationInput> {
   Future<void> _getAddressInputLocation() async {
     String _addressInput = _addressController.text;
 
-    if (_addressInput == null || _addressInput == '') {
+    if (_addressInput == '') {
       showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
           title: Text('An Error Occured!'),
           content: Text('Please provide location address.'),
           actions: <Widget>[
-            FlatButton(
+            TextButton(
               child: Text('Okay'),
               onPressed: () {
                 Navigator.of(context).pop();
@@ -53,9 +53,9 @@ class _LocationInputState extends State<LocationInput> {
     } else {
       _locationAPI = _addressInput.replaceAll(' ', '+');
       final staticMapImageUrl =
-          LocationHelper.generateAddressPreviewImage(_locationAPI);
+          LocationHelper.generateAddressPreviewImage(_locationAPI!);
       setState(() {
-        _previewImageUrl = staticMapImageUrl;
+        // _previewImageUrl = staticMapImageUrl;
         // print(_previewImageUrl);
       });
       widget.onSelectPlace(_locationAPI);
@@ -75,44 +75,48 @@ class _LocationInputState extends State<LocationInput> {
         SizedBox(
           height: 10,
         ),
-        Container(
-          height: 170,
-          width: double.infinity,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            border: Border.all(
-              width: 1,
-              color: Colors.grey,
-            ),
-          ),
-          child: _previewImageUrl == null
-              ? Text(
-                  'No Location Chosen',
-                  textAlign: TextAlign.center,
-                )
-              : Image.network(
-                  _previewImageUrl,
-                  fit: BoxFit.cover,
-                  width: double.infinity,
-                ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            FlatButton.icon(
-              icon: Icon(Icons.location_on),
-              label: Text('Current Location'),
-              textColor: Theme.of(context).primaryColor,
-              onPressed: _getCurrentUserLocation,
-            ),
-            FlatButton.icon(
-              icon: Icon(Icons.map),
-              label: Text('Address Location'),
-              textColor: Theme.of(context).primaryColor,
-              onPressed: _getAddressInputLocation,
-            ),
-          ],
-        ),
+        // Container(
+        //   height: 170,
+        //   width: double.infinity,
+        //   alignment: Alignment.center,
+        //   decoration: BoxDecoration(
+        //     border: Border.all(
+        //       width: 1,
+        //       color: Colors.grey,
+        //     ),
+        //   ),
+        //   child: _previewImageUrl == null
+        //       ? Text(
+        //           'No Location Chosen',
+        //           textAlign: TextAlign.center,
+        //         )
+        //       : Image.network(
+        //           _previewImageUrl!,
+        //           fit: BoxFit.cover,
+        //           width: double.infinity,
+        //         ),
+        // ),
+        // Row(
+        //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        //   children: <Widget>[
+        //     TextButton.icon(
+        //       icon: Icon(Icons.location_on),
+        //       label: Text('Current Location'),
+        //       onPressed: _getCurrentUserLocation,
+        //       style: TextButton.styleFrom(
+        //         foregroundColor: Theme.of(context).primaryColor,
+        //       ),
+        //     ),
+        //     TextButton.icon(
+        //       icon: Icon(Icons.map),
+        //       label: Text('Address Location'),
+        //       style: TextButton.styleFrom(
+        //         foregroundColor: Theme.of(context).primaryColor,
+        //       ),
+        //       onPressed: _getAddressInputLocation,
+        //     ),
+        //   ],
+        // ),
       ],
     );
   }
